@@ -1,0 +1,17 @@
+<div class ="flex-container">
+    <mat-toolbar class="header-navbar" color="primary">
+        <span>Innovat</span>
+        <span class="example-spacer"></span>
+        <ng-container *ngIf="isAuth">
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+                <button mat-menu-item>Profilo</button>
+                <button mat-menu-item>Permessi</button>
+                <mat-divider></mat-divider>
+                <button mat-menu-item (click)= logout()>Logout</button>
+            </mat-menu>
+        </ng-container>
+    </mat-toolbar>
+</div>

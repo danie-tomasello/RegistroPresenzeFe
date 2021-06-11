@@ -1,0 +1,144 @@
+<div class= "flex-container"
+    fxLayout 
+    fxLayoutAlign="start" 
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0"
+>
+    <div class="flex-item item1">
+      <mat-card class="example-card">
+        <mat-card-header class="card-header">
+          <mat-card-title class="dash-title">Dashboard</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        
+        
+        <mat-card-content>
+          <mat-form-field class="period-input" appearance="fill">
+            <mat-label>Seleziona periodo</mat-label>
+            <input matInput [matDatepicker]="dp" [formControl]="month">
+            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+            <mat-datepicker #dp
+                            startView="multi-year"
+                            (yearSelected)="chosenYearHandler($event)"
+                            (monthSelected)="chosenMonthHandler($event, dp)"
+                            (monthSelected)="selectPeriod()"
+                            panelClass="example-month-picker">
+            </mat-datepicker>
+          </mat-form-field>
+
+          <mat-action-list >
+            <mat-divider></mat-divider>
+            <button class="action-list-btn" mat-list-item (click)="downloadCsv()">Scarica report <mat-icon class="icons-btn-list">get_app</mat-icon></button>
+            
+            <mat-divider></mat-divider>
+          </mat-action-list>
+        </mat-card-content>
+        <mat-card-actions class ="item1-button">
+          <div class ="item1-button-btn">
+            <button mat-raised-button color="primary" (click) = saveReport()>Salva</button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+
+      <div class="flex-item item3">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Calendario
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <div class="calendar-wrapper">
+              <mat-calendar #calendar [(selected)]="selectedDate">
+              </mat-calendar>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      
+    </div>
+
+    <div class="flex-item item2" >
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="data">
+              <th mat-header-cell *matHeaderCellDef> Data </th>
+              <td mat-cell *matCellDef="let element">{{element.dayOfWeek}} {{element.data}} </td>
+            </ng-container>
+          
+            
+            <!-- Weight Column -->
+            
+            <ng-container matColumnDef="input1">
+              <th mat-header-cell *matHeaderCellDef> Ingresso </th>
+              <td mat-cell *matCellDef="let element" >
+                <mat-form-field appearance="standard" class="inputBox">
+                  <input matInput type="time" [(ngModel)]="element.input1" value="{{element.input1}}">
+                  <button *ngIf="element.input1" matSuffix mat-icon-button aria-label="Clear" (click)="element.input1=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </td>
+            </ng-container>
+            
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="output1">
+              <th mat-header-cell *matHeaderCellDef> Uscita </th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="standard" class="inputBox">
+                  <input matInput type="time" [(ngModel)]="element.output1" value="{{element.output1}}">
+                  <button *ngIf="element.output1" matSuffix mat-icon-button aria-label="Clear" (click)="element.output1=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="input2">
+              <th mat-header-cell *matHeaderCellDef> Ingresso 2</th>
+              <td mat-cell *matCellDef="let element">
+                <mat-form-field appearance="standard" class="inputBox">
+                  <input matInput type="time" [(ngModel)]="element.input2">
+                  <button *ngIf="element.input2" matSuffix mat-icon-button aria-label="Clear" (click)="element.input2=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="output2">
+              <th mat-header-cell *matHeaderCellDef> Uscita 2</th>
+              <td mat-cell *matCellDef="let element"> 
+                <mat-form-field appearance="standard" class="inputBox">
+                  <input matInput type="time" [(ngModel)]="element.output2">
+                  <button *ngIf="element.output2" matSuffix mat-icon-button aria-label="Clear" (click)="element.output2=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+              <th mat-header-cell *matHeaderCellDef></th>
+              <td mat-cell *matCellDef="let element"> 
+                  <button matSuffix mat-icon-button aria-label="Clear" (click)="delete(element)">
+                    <mat-icon class ="delete-icon" >delete_outline</mat-icon>
+                  </button>
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'table-row': isWeekend(row.dayOfWeek) }"></tr>
+          </table>
+    </div>
+    
+</div>
+

@@ -1,0 +1,32 @@
+<div class="flex-container">
+    <div class ="flex-item">
+        <mat-card class="login-card">
+            <mat-card-header>
+              <mat-card-title>Welcome</mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content class="content-card">
+                <form class="form-container">
+                    <mat-form-field class="input-field" appearance="standard">
+                        <mat-label>Inserisci username</mat-label>
+                        <input matInput [formControl]="username" required>
+                        <mat-error *ngIf="username.invalid">{{getErrorMessage('username')}}</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="input-field" appearance="standard">
+                        <mat-label>Inserisci password</mat-label>
+                        <input matInput [type]="hide ? 'password' : 'text'"  [formControl]="password" required>
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="password.invalid">{{getErrorMessage('password')}}</mat-error>
+                    </mat-form-field>
+                    </form>
+                
+            </mat-card-content>
+            <mat-card-actions class="button-action">
+                <button mat-raised-button color="primary" (click) = gestAuth() >Login</button>
+            </mat-card-actions>
+          </mat-card>
+    </div>
+    
+</div>
