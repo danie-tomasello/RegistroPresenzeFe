@@ -21,6 +21,24 @@
 .item3 {
     padding-top: 20px;
 }
+.mat-card-header{
+    background-color:#3f51b5 !important;
+    color:white;
+    padding:7px !important;
+  }
+  
+.mat-card{
+    padding:0 !important;
+}
+
+.mat-card-content{
+    padding:15px !important;
+}
+
+.dash-title{
+    padding-top: 11px;
+}
+
 .mat-elevation-z8{
     width: 90%;
     
@@ -49,19 +67,7 @@ table.mat-table {
     display: table;
     width: 100%;
 }
-.mat-card-header{
-    background-color:#3f51b5 !important;
-    color:white;
-    padding:7px !important;
-  }
-  
-.mat-card{
-    padding:0 !important;
-}
 
-.mat-card-content{
-    padding:15px !important;
-}
 .action-list-btn{
     color:#3f51b5;
 }
@@ -70,9 +76,7 @@ table.mat-table {
     padding-top: 4px;
     font-size: 20px;
 }
-.dash-title{
-    padding-top: 11px;
-}
+
 .table-row{
     background-color: rgba(255, 0, 0, 0.062);
 }

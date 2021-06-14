@@ -21,11 +21,11 @@
   }
   
 .mat-card{
-padding:0 !important;
+    padding:0 !important;
 }
 
 .mat-card-content{
-padding:5px !important;
+    padding:5px !important;
 }
 .mat-card-actions{
     padding : 15px !important;
@@ -33,7 +33,6 @@ padding:5px !important;
 .mat-card-title{
     padding-top : 13px !important;
 }
-
 
 .form-container{
     text-align: center;

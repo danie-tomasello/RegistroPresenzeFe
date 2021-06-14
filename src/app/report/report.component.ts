@@ -5,7 +5,7 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/mat
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { Evento } from 'src/models/Evento';
 import { Period } from 'src/models/Period';
-import { EventService } from '../services/data/event.service';
+import { EventService } from '../services/data/event/event.service';
 import {MatCalendar, MatDatepicker, MatDatepickerIntl} from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';

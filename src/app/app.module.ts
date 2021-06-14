@@ -13,6 +13,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ReportComponent } from './report/report.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DatePipe } from '@angular/common';
+import { GuestUserComponent } from './guest-user/guest-user.component';
+import { GuestUserModule } from './guest-user/guest-user.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { DatePipe } from '@angular/common';
     BrowserAnimationsModule,
     MaterialModule,
     AppRoutingModule,
+    GuestUserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

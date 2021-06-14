@@ -1,0 +1,99 @@
+<!--div class= "flex-container"
+    fxLayout 
+    fxLayoutAlign="start" 
+    fxLayoutGap="10px"
+    fxLayoutGap.xs="0"
+>
+    <div fxFlex="25" class="flex-item item1">
+      <mat-card class="example-card">
+        <mat-card-header class="card-header">
+          <mat-card-title class="dash-title">Dashboard</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        
+        
+        <mat-card-content>
+          <mat-button-toggle-group vertical aria-label="Font Style" >
+              <mat-button-toggle routerLink="profilo">Profilo</mat-button-toggle>
+                <mat-button-toggle routerLink="update-user">Impostazioni account</mat-button-toggle>
+                <mat-button-toggle routerLink="change-password">Modifica password</mat-button-toggle>
+            </mat-button-toggle-group>
+        </mat-card-content>
+      </mat-card>
+
+      <div fxFlex="70" class="flex-item item3">
+        <mat-accordion>
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Pannello ad espansione
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            yo
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      
+    </div>
+
+    <div class="flex-item item2" >
+      <mat-card class="example-card">
+        <mat-card-content>
+          
+          <router-outlet></router-outlet>
+            
+        </mat-card-content>
+      </mat-card>
+          
+    </div>
+    
+</div-->
+<div class="flex-container row"
+  fxLayout 
+  fxLayoutAlign="start" 
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0">
+
+  <div fxFlex= "25" class="flex-item item1">
+    <mat-card class="example-card">
+      <mat-card-header class="card-header">
+        <mat-card-title class="dash-title">Dashboard</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      
+      
+      <mat-card-content>
+        <mat-button-toggle-group vertical aria-label="Font Style" >
+            <mat-button-toggle routerLink="profilo">Profilo</mat-button-toggle>
+              <mat-button-toggle routerLink="update-user">Impostazioni account</mat-button-toggle>
+              <mat-button-toggle routerLink="change-password">Modifica password</mat-button-toggle>
+          </mat-button-toggle-group>
+      </mat-card-content>
+    </mat-card>
+
+    <div fxFlex="70" class="flex-item item3">
+      <mat-accordion>
+        <mat-expansion-panel (opened)="panelOpenState = true"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Pannello ad espansione
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          yo
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+  <div fxFlex= "70" class="flex-item item2">
+    <mat-card class="example-card">
+      <mat-card-content>
+        
+        <router-outlet></router-outlet>
+          
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+</div>

@@ -1,11 +1,9 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { catchError, filter, finalize, map, switchMap, take, tap } from 'rxjs/operators';
-import { NotificheComponent } from 'src/app/notifiche/notifiche.component';
+import { catchError, filter, switchMap, take } from 'rxjs/operators';
 import { AuthappService } from './authapp.service';
 
 
@@ -26,7 +24,7 @@ export class AuthInterceptorService implements HttpInterceptor{
     null
   );
 
-  constructor(private auth: AuthappService,private dialog:MatDialog) { }
+  constructor(private auth: AuthappService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     
@@ -36,9 +34,7 @@ export class AuthInterceptorService implements HttpInterceptor{
       catchError((error: HttpErrorResponse) => {
         if (error && error.status === 406 && this.auth.isLogged()){
 
-          this.dialog.open(NotificheComponent,{data:{message: error.error.cause}}).updatePosition({
-            top: '100px'
-          });
+          alert(error.error.cause);
           this.auth.clearAll();
           window.location.href = "http://localhost:4200/login";
         }

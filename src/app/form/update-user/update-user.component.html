@@ -1,0 +1,68 @@
+<form [formGroup]="userForm" (ngSubmit)="updateUser()">
+    <div class= "flex-container-update-user"
+        fxLayout 
+        fxLayoutAlign="start" 
+        fxLayoutGap="10px"
+        fxLayoutGap.xs="0"
+    >
+        <div fxFlex="50" class="flex-item-update-user item1-update-user" >
+            <div class="user-form" >
+                <div class="header-update-user"><h1>Modifica account</h1></div>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Username</mat-label>
+                    <input formControlName="username" type="text" matInput>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="username.invalid">
+                        {{getErrorMessage('username')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Nome</mat-label>
+                    <input formControlName="name" type="text" matInput>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="name.invalid">
+                        {{getErrorMessage('name')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Cognome</mat-label>
+                    <input formControlName="surname" type="text" matInput>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="surname.invalid">
+                        {{getErrorMessage('surname')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>E-mail</mat-label>
+                    <input formControlName="email" type="email" matInput>
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="email.invalid">
+                        {{getErrorMessage('email')}}
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="legacy">
+                    <mat-label>Numero di telefono</mat-label>
+                    <span matPrefix>+39 &nbsp;</span>
+                    <input formControlName="phoneNumber" type="tel" matInput placeholder="3205551234">
+                    <mat-icon matSuffix>mode_edit</mat-icon>
+                    <mat-error *ngIf="phoneNumber.invalid">
+                        {{getErrorMessage('phoneNumber')}}
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxFlex="50" class="flex-item-update-user item2-update-user" >
+            <img src="assets/img/user-image.jpg" alt="" width="120" height="120">
+            <div class="info-update-user">
+                <mat-form-field appearance="outline" >
+                    <mat-label>Tipo di utenza</mat-label>
+                    <input matInput value="ADMIN" disabled>
+                </mat-form-field>
+            </div>     
+        </div>
+    </div>
+    <div class ="button-btn-update-user">
+        <button type="submit" class="btn-update-user" mat-raised-button color="primary" >Salva</button>
+    </div>
+    
+</form>
