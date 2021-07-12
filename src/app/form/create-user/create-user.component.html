@@ -1,25 +1,15 @@
-
-
-<mat-card>
+<mat-card class="example-card">
     <mat-card-content>
-        <form [formGroup]="userForm" (ngSubmit)="updateUser()">
+        <form [formGroup]="userForm" (ngSubmit)="createUser()">
             <div class= "flex-container-update-user"
                 fxLayout 
                 fxLayoutAlign="start" 
                 fxLayoutGap="10px"
                 fxLayoutGap.xs="0"
             >
-                <div fxFlex="50" class="flex-item-update-user item1-update-user" >
+                <div class="flex-item-update-user item1-update-user" >
                     <div class="user-form" >
-                        <div class="header-update-user"><h1>Modifica account</h1></div>
-                        <mat-form-field appearance="legacy">
-                            <mat-label>Username</mat-label>
-                            <input formControlName="username" type="text" matInput>
-                            <mat-icon matSuffix>mode_edit</mat-icon>
-                            <mat-error *ngIf="username.invalid">
-                                {{getErrorMessage('username')}}
-                            </mat-error>
-                        </mat-form-field>
+                        <div class="header-update-user"><h1>Crea nuovo utente</h1></div>
                         <mat-form-field appearance="legacy">
                             <mat-label>Nome</mat-label>
                             <input formControlName="name" type="text" matInput>
@@ -53,16 +43,15 @@
                                 {{getErrorMessage('phoneNumber')}}
                             </mat-error>
                         </mat-form-field>
-                    </div>
-                </div>
-                <div fxFlex="50" class="flex-item-update-user item2-update-user" >
-                    <img src="assets/img/user-image.jpg" alt="" width="120" height="120">
-                    <div class="info-update-user">
-                        <mat-form-field appearance="outline" >
-                            <mat-label>Tipo di utenza</mat-label>
-                            <input matInput value="ADMIN" disabled>
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Livello utenza</mat-label>
+                            <mat-select formControlName="authorities">
+                                <mat-option *ngFor="let auth of auths" [value]="auth.value">
+                                {{auth.viewValue}}
+                                </mat-option>
+                            </mat-select>
                         </mat-form-field>
-                    </div>     
+                    </div>
                 </div>
             </div>
             <div class ="button-btn-update-user">
@@ -71,4 +60,4 @@
             
         </form>
     </mat-card-content>
-</mat-card>
+</mat-card >

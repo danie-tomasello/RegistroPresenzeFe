@@ -1,15 +1,20 @@
 <div class ="flex-container">
     <mat-toolbar class="header-navbar" color="primary">
-        <span>Innovat</span>
+        <img src="assets/img/clientlogo_innovatsrl.it_7da07.png" alt="" width="120" height="50">
         <span class="example-spacer"></span>
         <ng-container *ngIf="isAuth">
+            <div class="username">{{userLogged}}</div>
             <button mat-icon-button [matMenuTriggerFor]="menu">
                 <mat-icon>menu</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-                <button mat-menu-item routerLink="gestione-utenti/profilo">Profilo</button>
+                <button mat-menu-item routerLink="gestione-account/profilo">Profilo</button>
                 <button mat-menu-item routerLink="home">Registro presenze</button>
                 <button mat-menu-item>Permessi</button>
+                <ng-container *ngIf="isAdmin">
+                    <mat-divider></mat-divider>
+                    <button mat-menu-item routerLink="admin/gestione-utenti/elenco-utenti">Gestione utenti</button>
+                </ng-container>
                 <mat-divider></mat-divider>
                 <button mat-menu-item (click)= logout()>Logout</button>
             </mat-menu>

@@ -1,0 +1,29 @@
+.card{
+    padding-top: 10px;
+    
+}
+.title{
+    color: #3f51b5;
+    text-align: start;
+    font-style: italic;
+}
+
+.contact-content{
+    padding-top:20px;
+}
+.row{ 
+    display: flex;
+    -webkit-flex-direction: row; 
+    flex-direction: row;
+    column-gap: 10px;
+}
+.icon{
+    padding-top: 5px;
+}
+
+.info-acc-content{
+    padding-left: 10%;
+    padding-top: 3%;
+    text-align: left;
+}
+

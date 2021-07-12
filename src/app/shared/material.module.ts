@@ -14,6 +14,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatSelectModule} from '@angular/material/select';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import {MatTabsModule} from '@angular/material/tabs';
+
 
 
 
@@ -37,7 +41,10 @@ import {MatSelectModule} from '@angular/material/select';
     MatExpansionModule,
     MatDialogModule,
     MatButtonToggleModule,
-    MatSelectModule
+    MatSelectModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTabsModule
   ]
 })
 export class MaterialModule { }

@@ -16,12 +16,17 @@ export class EventService {
 
   getEvent(period:Period) {
     
-    const url = `http://${server}:${port}/account/event/search`;
-
+    var acc="/account"
+    if(period.idUser!==null){
+      acc = ``;
+    }
+    const url = `http://${server}:${port}`+ acc +`/event/search`;
+    
     return this.httpClient.post<Evento[]>(url ,period,{ responseType: 'json'});
     
 
   }
+
 
   save(array:Evento[]) {
     const url = `http://${server}:${port}/event/service/save`;
@@ -29,7 +34,6 @@ export class EventService {
     return this.httpClient.post<any>(url ,array,{ responseType: 'json'}).subscribe(
       res=>{
         this.dialog.open(NotificheComponent,{data:{message: res.msg}});
-        console.log(res);
       },
       error=>{
         this.dialog.open(NotificheComponent,{data:{message: error.error.cause}}).updatePosition({
@@ -47,12 +51,10 @@ export class EventService {
   }
 
   downloadCsv(array:Evento[],m:Moment) {
-    console.log(array);
     const url = `http://${server}:${port}/report/csv/download`;
 
     return this.httpClient.post<any>(url ,array,{ responseType: 'text' as any}).subscribe(
       res=>{
-        console.log("success");
         this.downloadFile(res,m);
       },
       error=>{

@@ -9,6 +9,7 @@ import { EventService } from '../services/data/event/event.service';
 import {MatCalendar, MatDatepicker, MatDatepickerIntl} from '@angular/material/datepicker';
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
+import { ActivatedRoute } from '@angular/router';
 
 const moment = _rollupMoment || _moment;
 
@@ -41,9 +42,13 @@ export const MY_FORMATS = {
 })
 export class ReportComponent implements OnInit {
   
-  constructor(private eventService:EventService) { }
+  constructor(private eventService:EventService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+    if(id!==null){
+      this.idUser =  Number(id);
+    }
     let date: Date = new Date();
     this.getDaysInMonth(date.getMonth(),date.getFullYear());
 
@@ -60,7 +65,9 @@ export class ReportComponent implements OnInit {
 
   month = new FormControl(moment());
 
+  reportUser:string;
 
+  idUser:number;
 
   getDaysInMonth(month, year) {
     var date = new Date(year, month, 1);
@@ -74,35 +81,22 @@ export class ReportComponent implements OnInit {
     }
     date = new Date(year, month, 1);
     let period = new Period(null,startDate,endDate);
-    
+    if(this.idUser!==null&&this.idUser!==undefined){
+      period.idUser=this.idUser;
+    }
     this.eventService.getEvent(period).subscribe(
       resp => {
-        var array:Evento[]=[];
-        
-        while (date.getMonth() === month) {
-          var record:Evento = new Evento('','','',date.toLocaleDateString(),'','','','',this.dayOfWeek(date.getDay()));
-          resp.forEach(eve=>{
-            if(eve.data===date.toLocaleDateString()){
-              record = new Evento(  
-                  eve.id,
-                  eve.idUser,
-                  eve.username,
-                  eve.data,
-                  eve.input1,
-                  eve.output1,
-                  eve.input2,
-                  eve.output2,
-                  this.dayOfWeek(date.getDay()));
-            }
-          })
-          array.push(record);
-          date.setDate(date.getDate() + 1);
-        }
-
-        this.dataSource=array;
+        this.reportUser=resp[0].username;
+        this.tableInit(date,month,resp);
       },
       error => {
-        var array:Evento[]=[];
+        this.tableInitEmpty(date,month);
+    });
+    
+  }
+  
+  tableInitEmpty(date,month){
+    var array:Evento[]=[];
         
         while (date.getMonth() === month) {
           var record:Evento = new Evento('','','',date.toLocaleDateString(),'','','','',this.dayOfWeek(date.getDay()));
@@ -111,8 +105,34 @@ export class ReportComponent implements OnInit {
         }
 
         this.dataSource=array;
-    });
-  }   
+  }
+
+  tableInit(date,month,resp){
+    var array:Evento[]=[];
+        
+    while (date.getMonth() === month) {
+      var record:Evento = new Evento('','','',date.toLocaleDateString(),'','','','',this.dayOfWeek(date.getDay()));
+      resp.forEach(eve=>{
+        if(eve.data===date.toLocaleDateString()){
+          record = new Evento(  
+              eve.id,
+              eve.idUser,
+              eve.username,
+              eve.data,
+              eve.input1,
+              eve.output1,
+              eve.input2,
+              eve.output2,
+              this.dayOfWeek(date.getDay()));
+        }
+      })
+      array.push(record);
+      date.setDate(date.getDate() + 1);
+    }
+
+    this.dataSource=array;
+  }
+
   getDateByString(data: string) {
     var array:string[] = data.split('/');
     return new Date(

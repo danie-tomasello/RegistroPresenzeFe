@@ -1,1 +1,62 @@
-<p>profile works!</p>
+
+<div>
+    <mat-card>
+        <mat-card-content>
+            <div class="title">Utente</div>
+            <mat-divider></mat-divider>
+            <div>
+                <img src="assets/img/user-image.jpg" alt="" width="120" height="120">
+            </div>
+            <div><b>{{user.name}} {{user.surname}}</b></div>
+            <div>{{user.username}}</div>
+        </mat-card-content>
+    </mat-card>
+</div>  
+
+<div class="card">
+    <mat-card>
+        <mat-card-content>
+            <div class="title">Contatti</div>
+            <mat-divider></mat-divider>
+            <div class="contact-content"
+            fxLayout 
+            fxLayoutAlign="center" 
+            fxLayoutGap="150px"
+            fxLayoutGap.xs="0">
+                <div class="email row">
+                    <div class="icon">
+                        <mat-icon>mail_outline</mat-icon>
+                    </div>
+                    <div>
+                        <b>E-mail</b>
+                        <div class="value">{{user.email}}</div> 
+                    </div>                    
+                </div>
+                <div class="number row">
+                    <div class="icon">
+                        <mat-icon>phone</mat-icon>
+                    </div>
+                    <div>
+                        <b>Telefono</b>
+                        <div class="value">+39 {{user.phoneNumber}}</div> 
+                    </div>  
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="card">
+    <mat-card>
+        <mat-card-content>
+            <div class="title">Info account</div>
+            <mat-divider></mat-divider>
+            <div class="info-acc-content">
+                <b>Ruolo: </b>{{getUserRole()}}<br>
+                <b>Data creazione: </b>{{user.creationDate}}<br>
+                <b>Ultima modifica: </b>26/04/1996<br>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+

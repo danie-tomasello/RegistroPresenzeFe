@@ -1,0 +1,31 @@
+<div class="flex-container row"
+  fxLayout 
+  fxLayoutAlign="start" 
+  fxLayoutGap="10px"
+  fxLayoutGap.xs="0">
+
+  <div fxFlex= "25" class="flex-item item1">
+    <mat-card class="example-card">
+      <mat-card-header class="card-header">
+        <mat-card-title class="dash-title">Dashboard</mat-card-title>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      
+      
+      <mat-card-content>
+        <mat-button-toggle-group vertical aria-label="Font Style" >
+            <mat-button-toggle routerLink="elenco-utenti">Elenco utenti</mat-button-toggle>
+            <mat-button-toggle routerLink="crea-utente">Crea nuovo utente</mat-button-toggle>
+            <mat-button-toggle routerLink="crea-utente">Importa lista utenti</mat-button-toggle>
+        </mat-button-toggle-group>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div fxFlex= "70" class="flex-item item2">
+    
+        <router-outlet></router-outlet>
+          
+      
+  </div>
+  
+</div>

@@ -6,13 +6,7 @@
 }
 .item1-update-user{
     display: flex;
-    width: 50%;
-}
-.item2-update-user {
-    padding: 4%;
-    flex-direction: column;
-    align-items: center;
-    width: 50%;
+    width: 100%;
 }
 .user-form{
     display: flex;
@@ -39,4 +33,3 @@
     text-align: center;
     padding-top: 7%;
 }
-

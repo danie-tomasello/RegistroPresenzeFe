@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { NotificheComponent } from 'src/app/notifiche/notifiche.component';
 import { UserService } from 'src/app/services/data/user/user.service';
 import { User } from 'src/models/User';
@@ -12,12 +13,13 @@ import { User } from 'src/models/User';
 })
 export class UpdateUserComponent implements OnInit {
 
-  constructor(private userService:UserService,private dialog:MatDialog) { }
+  constructor(private userService:UserService,private dialog:MatDialog,private route: ActivatedRoute) { }
   
   
 
   ngOnInit(): void {
-    this.getUser();
+    let id = this.route.snapshot.paramMap.get('id');
+    this.getUser(id);
   }
   
   user:User;
@@ -59,29 +61,44 @@ export class UpdateUserComponent implements OnInit {
     this.userService.updateAccount(user);
     
   }
-  getUser(){
-    this.userService.loadAccount().subscribe(
-      
-      res=>{
-        console.log(res);
-        this.userForm.setValue({
-          username:res.username,
-          name:res.name,
-          surname:res.surname,
-          email:res.email,
-          phoneNumber:res.phoneNumber
-        });
-        this.user=res;
-        
-      },
-      error=>{
-        this.dialog.open(NotificheComponent,{data:{message: error.error.cause}}).updatePosition({
-          top: '100px'
-          
-        });
-        console.log(error);
-      }
-    );
+  getUser(id:string){
+    if(id===null||id===undefined){
+      this.userService.loadAccount().subscribe(      
+        res=>{
+          this.initForm(res);
+          this.user=res;       
+        },
+        error=>{
+          this.dialog.open(NotificheComponent,{data:{message: error.error.cause}}).updatePosition({
+            top: '100px'         
+          });
+          console.log(error);
+        }
+      );
+    }else{
+      this.userService.getUser(id).subscribe(      
+        res=>{
+          this.initForm(res);
+          this.user=res;       
+        },
+        error=>{
+          this.dialog.open(NotificheComponent,{data:{message: error.error.cause}}).updatePosition({
+            top: '100px'         
+          });
+          console.log(error);
+        }
+      );
+    }
+  }
+
+  initForm(user:User){
+    this.userForm.setValue({
+      username:user.username,
+      name:user.name,
+      surname:user.surname,
+      email:user.email,
+      phoneNumber:user.phoneNumber
+    });
   }
 
   getErrorMessage(field:string){

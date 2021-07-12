@@ -4,3 +4,7 @@
 .example-spacer {
     flex: 1 1 auto;
   }
+.username{
+    font-style: italic;
+    font-weight: normal;
+}
