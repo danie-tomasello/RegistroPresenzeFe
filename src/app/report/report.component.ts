@@ -10,6 +10,8 @@ import {MatCalendar, MatDatepicker, MatDatepickerIntl} from '@angular/material/d
 import * as _moment from 'moment';
 import {default as _rollupMoment, Moment} from 'moment';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/data/user/user.service';
+import { AuthappService } from '../services/auth/authapp.service';
 
 const moment = _rollupMoment || _moment;
 
@@ -42,7 +44,7 @@ export const MY_FORMATS = {
 })
 export class ReportComponent implements OnInit {
   
-  constructor(private eventService:EventService, private route:ActivatedRoute) { }
+  constructor(private eventService:EventService, private route:ActivatedRoute, private authService:AuthappService) { }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
@@ -51,7 +53,7 @@ export class ReportComponent implements OnInit {
     }
     let date: Date = new Date();
     this.getDaysInMonth(date.getMonth(),date.getFullYear());
-
+    
   }
 
   @ViewChild('calendar') calendar: MatCalendar<Moment>;
@@ -146,6 +148,7 @@ export class ReportComponent implements OnInit {
   selectPeriod(){
     var m:Moment=this.month.value
     this.getDaysInMonth(m.toDate().getMonth(), m.toDate().getFullYear());
+    let date: Date = new Date();
   }
 
   saveReport(){
@@ -245,6 +248,15 @@ export class ReportComponent implements OnInit {
           return "";
           break;
     }
+  }
+
+  isDisabled():boolean{
+    let date: Date = new Date();
+    var m:Moment=this.month.value
+    date.getMonth()
+    if((date.getMonth()===m.toDate().getMonth()&&date.getFullYear()===m.toDate().getFullYear())||this.authService.isAdmin())
+      return false;
+    return true;
   }
 
 }
